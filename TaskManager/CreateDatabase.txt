@@ -1,0 +1,20 @@
+Database Name:TaskManager
+
+Create a table scripts
+CREATE TABLE task1
+( 
+	taskid int NOT NULL,
+	taskname varchar(300) NOT NULL,
+	description varchar(1000) NULL,
+	startdate datetime NOT NULL,
+	duedate datetime NULL,
+	completedate datetime NULL,
+	assignto varchar(50) NULL,
+	status varchar(50) NOT NULL,
+	createby varchar(50) NOT NULL,
+	createdatetime datetime NOT NULL,
+	updateby varchar(50) NULL,
+	updatedatetime datetime NULL,
+	PRIMARY KEY (taskid)
+  );
+

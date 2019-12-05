@@ -1,0 +1,221 @@
+﻿<Window x:Class="TaskManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskManager"
+        mc:Ignorable="d"
+        Title="Task Manager" Height="800" Width="1000" WindowStartupLocation="CenterScreen">
+    <Border Padding="10">
+        <StackPanel >
+            <Grid Height="45" Margin="0 10 0 0" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180" />
+                    <ColumnDefinition Width="180" />
+                    <ColumnDefinition Width="180" />
+                </Grid.ColumnDefinitions>
+                <Button Margin="0 0 30 0" Grid.Column="0" x:Name="newTask" Content="Clear Task" FontSize="15" RenderTransformOrigin="0.501,0.5" Click="newTask_Click" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.BitmapEffect>
+                        <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="10" Opacity="0.5" />
+                    </Button.BitmapEffect>
+                </Button>
+                <Button Margin="0 0 30 0" Grid.Column="1" x:Name="deleteTask" Content="Delete Task" FontSize="15" Click="deleteTask_Click"  >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.BitmapEffect>
+                        <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="10" Opacity="0.5" />
+                    </Button.BitmapEffect>
+                </Button>
+                <Button Margin="0 0 30 0" Grid.Column="2" x:Name="saveTask" Content="Save Task"  FontSize="15" Click="saveTask_Click" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.BitmapEffect>
+                        <DropShadowBitmapEffect Color="Black" Direction="320" Softness="1" ShadowDepth="10" Opacity="0.5" />
+                    </Button.BitmapEffect>
+                </Button>
+            </Grid>
+            <Border Margin="0 20 0 0" Background="GhostWhite" BorderBrush="Gainsboro" CornerRadius="8,8,8,8" BorderThickness="1,1,1,1" >
+                <StackPanel Margin="0 0 0 10">
+                    <Grid Margin="10 30 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="75" />
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="498"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Margin="0 0 10 0" Grid.Column="0" Content="Task ID"/>
+                        <TextBox Margin="0 0 70 0" Grid.Column="1" x:Name="taskID" IsReadOnly="True" Background="#eeeeee" ></TextBox>
+                        <Label Margin="0 0 10 0" Grid.Column="2" Content="Task Name" />
+                        <TextBox Margin="0 0 0 0" Grid.Column="3" x:Name="taskName" />
+                    </Grid>
+                    <Grid Margin="10 20 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="75" />
+                            <ColumnDefinition Width="800" />
+                        </Grid.ColumnDefinitions>
+                        <Label Margin="0 0 5 0" Grid.Column="0" Content="Description"/>
+                        <TextBox Margin="0 0 0 0" Grid.Column="1" x:Name="taskDescription" />
+                    </Grid>
+                    <Grid Margin="10 20 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="75" />
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="200"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Margin="0 0 10 0" Grid.Column="0" Content="Assign To"/>
+                        <TextBox Margin="0 0 70 0" Grid.Column="1" x:Name="taskAssignTo"></TextBox>
+                        <Label Margin="0 0 10 0" Grid.Column="2" Content="Status" />
+                        <ComboBox Margin="0 0 0 0" Grid.Column="3" x:Name="status">
+                            <ComboBoxItem Name="active">Active</ComboBoxItem>
+                            <ComboBoxItem Name="overdue">Overdue</ComboBoxItem>
+                            <ComboBoxItem Name="completed">Completed</ComboBoxItem>
+                            <ComboBoxItem Name="notStarted">Not Started</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+
+                    <Grid Margin="10 20 0 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="75" />
+                            <ColumnDefinition Width="220" />
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="220" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="220" />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Start Date" Grid.Column="0" Margin="0 0 10 0"/>
+                        <DatePicker Grid.Column="1" x:Name="startDate" Margin="0 0 10 0"/>
+                        <Label Grid.Column="2" Content="Due Date" Margin="0 0 10 0"/>
+                        <DatePicker Grid.Column="3" x:Name="dueDate" Margin="0 0 10 0"/>
+                        <Label Grid.Column="4" Content="Complete Date" Margin="0 0 10 0"/>
+                        <DatePicker Grid.Column="5" x:Name="completeDate" Margin="0 0 10 0"/>
+
+                    </Grid>
+                </StackPanel>
+            </Border>
+            <Border Margin="0 20 0 0"  BorderBrush="Gainsboro" BorderThickness="1,1,1,1" >
+                <StackPanel Margin="0 10 0 10">
+                    <Grid Height="30" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Content="Show Current Tasks" Grid.Column="0" IsChecked="False" Margin="0,0,30,0" Padding="0 -4 0 0" x:Name="ShowCurrentTasks" FontSize="15" HorizontalAlignment="Right" Width="160" Click="ShowCurrentTasks_Click" ></CheckBox>
+                        <CheckBox Content="Active" Grid.Column="1" IsChecked="True" Margin="0,0,10.4,0" Padding="7 -4 0 0" x:Name="statusActive" FontSize="15" HorizontalAlignment="Right" Width="140" Click="statusActive_Click"></CheckBox>
+                        <CheckBox Content="Overdue" Grid.Column="2" IsChecked="True" Margin="0 0 10 0" Padding="7 -4 0 0" x:Name="statusOverdue" FontSize="15"  Click="statusOverdue_Click"></CheckBox>
+                        <CheckBox Content="Completed" Grid.Column="3" IsChecked="True" Margin="0 0 10 0" Padding="7 -4 0 0" x:Name="statusCompleted" FontSize="15"  Click="statusCompleted_Click"></CheckBox>
+                        <CheckBox Content="Not Started" Grid.Column="4" IsChecked="True" Margin="0 0 10 0" Padding="7 -4 0 0" x:Name="statusNotStarted" FontSize="15"  Click="statusNotStarted_Click"></CheckBox>
+                    </Grid>
+                    <Grid Margin="10 10 0 0">
+                        <DataGrid x:Name="datagridTask" Height="380" SelectionChanged="datagridTask_SelectionChanged" LoadingRow="datagridTask_LoadingRow">
+                            <DataGrid.Columns >
+                                <DataGridTextColumn Header="Task ID" Binding="{Binding }">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Task Name" Binding="{Binding LName}">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Description" Binding="{Binding }">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Start Date" Binding="{Binding LName}">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Due Date" Binding="{Binding }">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Complete Date" Binding="{Binding LName}">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Assign To" Binding="{Binding }">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Status" Binding="{Binding LName}">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Create By" Binding="{Binding }">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Create Date" Binding="{Binding LName}">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Update By" Binding="{Binding }">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Update Date" Binding="{Binding LName}">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+
+    </Border>
+
+
+</Window>
